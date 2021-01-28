@@ -103,11 +103,6 @@ class ReflectPlayer(Player):
         return super().getGameHistory()
 
 
-# def beats(one, two):
-#     return ((one == 'rock' and two == 'scissors') or
-#             (one == 'scissors' and two == 'paper') or
-#             (one == 'paper' and two == 'rock'))
-
 class Game:
     def __init__(self, p1, p2):
         self.p1 = p1
@@ -150,7 +145,6 @@ class Game:
             print(f"** Round {round+1} **")
             self.play_round()
             self.print_score()
-            # self.print_history()
         self.announce_winner()
         print("Game over!")
 
