@@ -103,6 +103,31 @@ class ReflectPlayer(Player):
         return super().getGameHistory()
 
 
+# CyclePlayer SUBCLASS
+class CyclePlayer(Player):
+
+    def move(self):
+        player_move_history = self.getGameHistory()
+        # Checks move played last round and cycles through different moves.
+        if (player_move_history):
+            if(player_move_history[-1][0] == 'PAPER'):
+                return "SCISSORS"
+            elif(player_move_history[-1][0] == 'ROCK'):
+                return "PAPER"
+            elif(player_move_history[-1][0] == 'SCISSORS'):
+                return "ROCK"
+        return random.choice(super().move())
+
+    def determineWin(self, my_move, their_move):
+        return super().determineWin(my_move, their_move)
+
+    def learn(self, my_move, their_move):
+        return super().learn(my_move, their_move)
+
+    def getGameHistory(self):
+        return super().getGameHistory()
+
+
 class Game:
     def __init__(self, p1, p2):
         self.p1 = p1
