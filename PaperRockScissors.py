@@ -78,6 +78,34 @@ class HumanPlayer(Player):
     def getGameHistory(self):
         return super().getGameHistory()
 
+#ReflectPlayer SUBCLASS
+class ReflectPlayer(Player):
+
+    def move(self):
+        opposite_player_move_history = self.getGameHistory()
+
+        if (opposite_player_move_history):
+            if(opposite_player_move_history[-1][1] == 'PAPER'):
+                return "PAPER"
+            elif(opposite_player_move_history[-1][1] == 'ROCK'):
+                return "ROCK"
+            elif(opposite_player_move_history[-1][1] == 'SCISSORS'):
+                return "SCISSORS"
+            
+        return random.choice(super().move())
+
+
+
+    def determineWin(self, my_move, their_move):
+        return super().determineWin(my_move, their_move)
+
+    def learn(self, my_move, their_move):
+        return super().learn(my_move, their_move)
+
+    def getGameHistory(self):
+        return super().getGameHistory()
+
+
 # def beats(one, two):
 #     return ((one == 'rock' and two == 'scissors') or
 #             (one == 'scissors' and two == 'paper') or
@@ -130,7 +158,7 @@ class Game:
 
     def play_game(self):
         print("Game start!\n")
-        for round in range(3):
+        for round in range(7):
             print(f"** Round {round+1} **")
             self.play_round()
             self.print_score()
@@ -140,5 +168,5 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(HumanPlayer(), RandomPlayer())
+    game = Game(HumanPlayer(), ReflectPlayer())
     game.play_game()
