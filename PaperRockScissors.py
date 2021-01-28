@@ -8,7 +8,7 @@ moves = ['ROCK', 'PAPER', 'SCISSORS']
 in this game"""
 
 
-# SUPERCLASS
+# Player SUPERCLASS
 class Player:
 
     def __init__(self):
@@ -21,7 +21,6 @@ class Player:
     def getScore(self):
         playerScore = self.score
         return playerScore
-
 
     def determineWin(self, my_move, their_move):
         if (my_move == "ROCK" and their_move == "SCISSORS"):
@@ -37,7 +36,7 @@ class Player:
 
     def getGameHistory(self):
         return self.previousGames
-        
+
 
 # RandomPlayer SUBCLASS
 class RandomPlayer(Player):
@@ -48,17 +47,17 @@ class RandomPlayer(Player):
         return super().determineWin(my_move, their_move)
 
     def learn(self, my_move, their_move):
-        return super().learn(my_move, their_move) 
-    
+        return super().learn(my_move, their_move)
+
     def getGameHistory(self):
         return super().getGameHistory()
 
 
-#HumanPlayer SUBCLASS
+# HumanPlayer SUBCLASS
 class HumanPlayer(Player):
     def move(self):
-
-        user_input = input('\nHuman Player Select: \n1. PAPER \n2. ROCK \n3. SCISSORS\n: ')
+        user_input = input('\nHuman Player Select: \n'
+                           '1. PAPER \n2. ROCK \n3. SCISSORS\n: ')
         if(user_input == '1'):
             return "PAPER"
         elif(user_input == '2'):
@@ -78,7 +77,8 @@ class HumanPlayer(Player):
     def getGameHistory(self):
         return super().getGameHistory()
 
-#ReflectPlayer SUBCLASS
+
+# ReflectPlayer SUBCLASS
 class ReflectPlayer(Player):
 
     def move(self):
@@ -91,10 +91,7 @@ class ReflectPlayer(Player):
                 return "ROCK"
             elif(opposite_player_move_history[-1][1] == 'SCISSORS'):
                 return "SCISSORS"
-            
         return random.choice(super().move())
-
-
 
     def determineWin(self, my_move, their_move):
         return super().determineWin(my_move, their_move)
@@ -124,11 +121,6 @@ class Game:
         else:
             return print("Player 2 is the winner!\n")
 
-
-    # def print_history(self):
-    #     playerOneHistory = self.p2.getGameHistory()
-    #     print( playerOneHistory )1
-
     def print_score(self):
         playerOneScore = self.p1.getScore()
         playerTwoScore = self.p2.getScore()
@@ -137,7 +129,6 @@ class Game:
         print('     ----------SCORE----------')
         print(f"     Player 1 - {stringOne} Player 2 - {stringTwo}\n")
         return
-
 
     def play_round(self):
         move1 = self.p1.move()
@@ -150,11 +141,8 @@ class Game:
             print(f"\nPlayer 1: {move1}  Player 2: {move2}")
             print('----Draw! Go Again----')
             return self.play_round()
-
-
         print(f"\nPlayer 1: {move1}  Player 2: {move2}\n")
         return
-
 
     def play_game(self):
         print("Game start!\n")
