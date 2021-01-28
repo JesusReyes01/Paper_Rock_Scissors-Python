@@ -56,7 +56,7 @@ class RandomPlayer(Player):
 # HumanPlayer SUBCLASS
 class HumanPlayer(Player):
     def move(self):
-        user_input = input('\nHuman Player Select: \n'
+        user_input = input('\nType number and press Enter: \n'
                            '1. PAPER \n2. ROCK \n3. SCISSORS\n: ')
         if(user_input == '1'):
             return "PAPER"
@@ -83,7 +83,7 @@ class ReflectPlayer(Player):
 
     def move(self):
         opposite_player_move_history = self.getGameHistory()
-
+        # Repeats opponents move
         if (opposite_player_move_history):
             if(opposite_player_move_history[-1][1] == 'PAPER'):
                 return "PAPER"
@@ -144,10 +144,9 @@ class Game:
     def print_score(self):
         playerOneScore = self.p1.getScore()
         playerTwoScore = self.p2.getScore()
-        stringOne = str(playerOneScore)
-        stringTwo = str(playerTwoScore)
-        print('     ----------SCORE----------')
-        print(f"     Player 1 - {stringOne} Player 2 - {stringTwo}\n")
+
+        print('    ----------SCORE----------')
+        print(f"    Player 1 - {playerOneScore} Player 2 - {playerTwoScore}\n")
         return
 
     def play_round(self):
@@ -167,7 +166,7 @@ class Game:
     def play_game(self):
         print("Game start!\n")
         for round in range(7):
-            print(f"** Round {round+1} **")
+            print(f"**** Round {round+1} ****")
             self.play_round()
             self.print_score()
         self.announce_winner()
